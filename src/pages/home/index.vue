@@ -42,15 +42,15 @@
           </view>
         </view>
       </view>
-      
+
     </view>
 
-    
   </view>
 </template>
 
 <script>
 import mySearch from '../../components/my-search/index'
+import api from '../../api/common'
 export default {
   components: {
     mySearch
@@ -65,15 +65,35 @@ export default {
   computed: {},
   methods: {
     async getSwiperList(){
-      const {data:res} = await uni.$http.get('/api/public/v1/home/swiperdata')
-      if(res.meta.status !== 200)return uni.$showMsg()
-      this.swiperList = res.message
+      // const {data:res} = await uni.$http.get('/api/public/v1/home/swiperdata')
+      api.getData('/api/public/v1/home/swiperdata')
+      .then(res=>{
+        console.log(res);
+        if(res.data.meta.status !== 200)return uni.$showMsg()
+	      this.swiperList = res.data.message
+        console.log(this.swiperList);
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+      // if(res.meta.status !== 200)return uni.$showMsg()
+      // this.swiperList = res.message
       // uni.$showMsg('数据请求成功!')
     },
     async getNavList(){
-      const {data:res} = await uni.$http.get('/api/public/v1/home/catitems')
-      if(res.meta.status !== 200)return uni.$showMsg()
-      this.navList = res.message
+      // const {data:res} = await uni.$http.get('/api/public/v1/home/catitems')
+      api.getData('/api/public/v1/home/catitems')
+      .then(res=>{
+        console.log(res);
+        if(res.data.meta.status !== 200)return uni.$showMsg()
+	      this.navList = res.data.message
+        console.log(this.swiperList);
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+      // if(res.meta.status !== 200)return uni.$showMsg()
+      // this.navList = res.message
     },
     // nav-item 项被点击时候的事件处理函数
     navClickHandler(item) {
@@ -85,16 +105,26 @@ export default {
       }
     },
     async getFloorList(){
-      const {data:res} = await uni.$http.get('/api/public/v1/home/floordata')
-      if(res.meta.status !== 200)return uni.$showMsg()
-      
-      res.message.forEach(floor=>{
+      // const {data:res} = await uni.$http.get('/api/public/v1/home/floordata')
+      // if(res.meta.status !== 200)return uni.$showMsg()
+      api.getData('/api/public/v1/home/floordata')
+      .then(res=>{
+        console.log(res);
+        if(res.data.meta.status !== 200)return uni.$showMsg()
+        res = res.data
+        res.message.forEach(floor=>{
         floor.product_list.forEach(prod=>{
           prod.url = '/subpkg/goods_list/index?'+prod.navigator_url.split('?')[1]
         })
       })
       // console.log(res);
       this.floorList = res.message
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+
+
     },
     gotoSearch() {
       uni.navigateTo({
@@ -109,7 +139,7 @@ export default {
     this.getNavList()
     this.getFloorList()
   },
-} 
+}
 </script>
 
 <style lang="scss" scoped>

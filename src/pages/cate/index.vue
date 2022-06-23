@@ -30,6 +30,7 @@
 
 <script>
 import mySearch from '../../components/my-search/index'
+import api from '../../api/common'
 export default {
   components: {
     mySearch
@@ -46,11 +47,21 @@ export default {
   computed: {},
   methods: {
     async getCateList() {
-      const { data: res } = await uni.$http.get('/api/public/v1/categories')
-      if (res.meta.status !== 200) return uni.$showMsg()
-      this.cateList = res.message
-      this.cateLevel2 = res.message[0].children
-      console.log(res);
+      // const { data: res } = await uni.$http.get('/api/public/v1/categories')
+      // if (res.meta.status !== 200) return uni.$showMsg()
+      // this.cateList = res.message
+      // this.cateLevel2 = res.message[0].children
+      api.getData('/api/public/v1/categories')
+      .then(res=>{
+        console.log(res);
+        if(res.data.meta.status !== 200)return uni.$showMsg()
+	      this.cateList = res.data.message
+        this.cateLevel2 = res.data.message[0].children
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+      
     },
      // 选中项改变的事件处理函数
     activeChanged(i) {
