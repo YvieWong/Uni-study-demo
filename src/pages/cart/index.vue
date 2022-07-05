@@ -1,56 +1,78 @@
 <template>
   <div class="cart">
-	  更新啦
-	  <div class="swiper-item" v-for="(item, i) in swiperList" :key="i">
-      <div>{{item.image_src}}</div>
-		  <image :src="item.image_src" style="height:100%"></image>
-	  </div>
+    <h2>canvas的使用学习</h2>
+    <canvas
+      :style="{width:'500px',height:'400px'}"
+      id="myCanvas"
+      canvas-id="myCanvas"
+    >
+    </canvas>
+    <button
+      open-type=""
+      hover-class="button-hover"
+      @click="handleFlash"
+    >
+      动画效果
+    </button>
   </div>
 </template>
 
 <script>
-import api from '../../api/common'
 export default {
   components: {},
- data(){
-   return{
-     swiperList:[]
-   }
- },
+  data () {
+    return {
+      context: '',
+      isFlash: false
+    }
+  },
   computed: {},
+  mounted () { },
   methods: {
-	  async getSwiperList(){
-	    // const {data:res} = await uni.$http.get('/api/public/v1/home/swiperdata')
-      // console.log(res);
-      api.getData('/api/public/v1/home/swiperdata')
-      .then(res=>{
-        console.log(res);
-        if(res.data.meta.status !== 200)return uni.$showMsg()
-	      this.swiperList = res.data.message
-        console.log(this.swiperList);
+    drawPic () {
+      // 获取画布
+      let contextTem = uni.createCanvasContext('myCanvas')
+      console.log(contextTem);
+      contextTem.setFillStyle('green')
+      contextTem.fillRect(50, 100, 200, 100)
+      this.context = contextTem
+      // 开始绘画
+      this.context.draw(true, () => {
+        uni.$showMsg('绘制完成')
       })
-      .catch(error=>{
-        console.log(error);
-      })
-	    // if(res.meta.status !== 200)return uni.$showMsg()
-	    // this.swiperList = res.message
-	    uni.$showMsg('数据请求成功!')
-	  },
+    },
+    handleFlash () {
+      var left = 50
+      if (this.isFlash) {
+        this.isFlash = false
+        return
+      }
+      setInterval(() => {
+        this.isFlash = true
+        this.context.clearRect(0, 0, 500, 400)
+        left++
+        this.context.fillRect(left, 100, 200, 100)
+        this.context.draw(true)
+        if (left > 400) {
+          left = -200
+        }
+      }, 16)
+    }
   },
   watch: {},
 
   // 页面周期函数--监听页面加载
-  onLoad() {
-	  this.getSwiperList()
-  },
+  onLoad () { },
   // 页面周期函数--监听页面初次渲染完成
-  onReady() {},
+  onReady () {
+    this.drawPic()
+  },
   // 页面周期函数--监听页面显示(not-nvue)
-  onShow() {},
+  onShow () { },
   // 页面周期函数--监听页面隐藏
-  onHide() {},
+  onHide () { },
   // 页面周期函数--监听页面卸载
-  onUnload() {},
+  onUnload () { },
   // 页面处理函数--监听用户下拉动作
   // onPullDownRefresh() { uni.stopPullDownRefresh(); },
   // 页面处理函数--监听用户上拉触底
@@ -59,13 +81,7 @@ export default {
   // onPageScroll(event) {},
   // 页面处理函数--用户点击右上角分享
   // onShareAppMessage(options) {},
-} 
+}
 </script>
 
-<style scoped>
-.swiper-item,
- image {
-   width: 100%;
-   height: 100%;
- }
-</style>
+<style scoped></style>
