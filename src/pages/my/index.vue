@@ -1,25 +1,30 @@
 <template>
-  <div class="my">my</div>
+  <div class="my">
+    <headbar></headbar>
+  </div>
 </template>
 
 <script>
+import headbar from '@/components/headbar/headbar'
 export default {
-  components: {},
+  components: {
+    headbar
+  },
   data: () => ({}),
   computed: {},
   methods: {},
   watch: {},
 
   // 页面周期函数--监听页面加载
-  onLoad() {},
+  onLoad () { },
   // 页面周期函数--监听页面初次渲染完成
-  onReady() {},
+  onReady () { },
   // 页面周期函数--监听页面显示(not-nvue)
-  onShow() {},
+  onShow () { },
   // 页面周期函数--监听页面隐藏
-  onHide() {},
+  onHide () { },
   // 页面周期函数--监听页面卸载
-  onUnload() {},
+  onUnload () { },
   // 页面处理函数--监听用户下拉动作
   // onPullDownRefresh() { uni.stopPullDownRefresh(); },
   // 页面处理函数--监听用户上拉触底
@@ -28,7 +33,7 @@ export default {
   // onPageScroll(event) {},
   // 页面处理函数--用户点击右上角分享
   // onShareAppMessage(options) {},
-} 
+}
 </script>
 
 <style scoped></style>

@@ -5,9 +5,9 @@ export const timeOut = () => {
   // 当前时间
   let currentTime = null
   // 超时时间
-  let sys_timeout = 5 * 1000
+  let sys_timeout = 5 * 60 * 1000
   // 每隔多长时间检查是否超时
-  let check_time = 5 * 1000
+  let check_time = 5 * 60 * 1000
   // 计时器
   let goOut = null
 
