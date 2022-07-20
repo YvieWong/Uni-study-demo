@@ -97,6 +97,9 @@
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "Yvie",
 		"navigationBarBackgroundColor": "#c00000",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+    "app-plus": {
+      "titleNView": false
+    }
 	}
 }

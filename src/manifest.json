@@ -51,30 +51,6 @@
             }
         }
     },
-    /* SDK配置 */
-    "quickapp" : {},
-    /* 快应用特有相关 */
-    "mp-weixin" : {
-        /* 微信小程序特有相关 */
-        "appid" : "wx9fe9b4aa8a8e1658",
-        "setting" : {
-            "urlCheck" : false,
-            "checkSiteMap" : false
-        },
-        "usingComponents" : true
-    },
-    "mp-alipay" : {
-        "usingComponents" : true
-    },
-    "mp-baidu" : {
-        "usingComponents" : true
-    },
-    "mp-toutiao" : {
-        "usingComponents" : true
-    },
-    "mp-qq" : {
-        "usingComponents" : true
-    },
     "h5" : {
         "title" : "h5",
         "devServer":{
@@ -87,7 +63,7 @@
                     "^/api2": ""
                   }
         				}
-                
+
         			}
         		}
     }

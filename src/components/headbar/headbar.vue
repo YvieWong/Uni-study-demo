@@ -20,13 +20,13 @@
           size="18"
           color="#999"
         />
-        <input
+        <!-- <input
           confirm-type="search"
           class="nav-bar-input"
           type="text"
           placeholder="输入搜索关键词"
           @confirm="confirm"
-        />
+        /> -->
       </view>
       <block slot="right">
         <view class="city">

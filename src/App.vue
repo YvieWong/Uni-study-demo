@@ -1,11 +1,3 @@
-<template>
-  <view
-    class="content"
-    @click="updateClickTime"
-  >
-    <router-view />
-  </view>
-</template>
 <script>
 import { timeOut } from './utils/timing'
 export default {
@@ -14,7 +6,7 @@ export default {
   },
   onShow: function () {
     console.log('App Show')
-    // 启动定时器  
+    // 启动定时器
     timeOut();
   },
   onHide: function () {
@@ -23,6 +15,7 @@ export default {
   methods: {
     // 记录点击时间，传入参数为当前时间
     updateClickTime () {
+      console.log('1111')
       this.$store.commit('LAST_TIME_UPDATE', new Date().getTime())
       timeOut()
     },

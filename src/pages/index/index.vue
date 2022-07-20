@@ -1,6 +1,8 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+    1111
+		<!-- <image class="logo" src="/static/logo.png"></image> -->
+		<image class="logo" :src="this.STATICURL+'1.png'"></image>
 		<view>
 			<text class="title">{{title}}</text>
 		</view>
@@ -11,12 +13,19 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+        // url:this.STATICURL
 			}
 		},
 		onLoad() {
-
+      console.log('@@@@');
+      console.log(this.staticUrl,111);
+      // console.log(this.url,2222);
 		},
+    mounted() {
+      console.log('@@@@');
+      console.log(this.STATICURL,111);
+    },
 		methods: {
 
 		}

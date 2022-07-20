@@ -9,6 +9,9 @@ Vue.use(uView)
 Vue.config.productionTip = false
 
 App.mpType = 'app'
+
+Vue.prototype.STATICURL = '/storage/emulated/0/Android/data/com.uniapp.test1/files/image/'
+
 // wx.$http = $http
 // uni.$http = $http
 // 请求的根路径

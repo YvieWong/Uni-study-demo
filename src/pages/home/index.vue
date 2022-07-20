@@ -1,11 +1,12 @@
 <template>
-  <view>
+  <view @click="updateClickTime">
 
     <!-- 使用自定义的搜索组件 -->
-    <view class="search-box">
+    <!-- <view class="search-box">
       <headbar></headbar>
       <my-search @myClick="gotoSearch"></my-search>
-    </view>
+    </view> -->
+    <index></index>
     <!-- 轮播图区域 -->
     <swiper
       :indicator-dots="true"
@@ -97,11 +98,14 @@
 <script>
 import mySearch from '../../components/my-search/index'
 import headbar from '@/components/headbar/headbar'
+import index from '@/pages/index/index'
 import api from '../../api/common'
+import { timeOut } from '@/utils/timing.js'
 export default {
   components: {
     mySearch,
-    headbar
+    headbar,
+    index
   },
   data () {
     return {
@@ -112,6 +116,11 @@ export default {
   },
   computed: {},
   methods: {
+    updateClickTime () {
+      console.log('1111')
+      this.$store.commit('LAST_TIME_UPDATE', new Date().getTime())
+      timeOut()
+    },
     async getSwiperList () {
       // const {data:res} = await uni.$http.get('/api/public/v1/home/swiperdata')
       api.getData('/api/public/v1/home/swiperdata')
